@@ -18,6 +18,9 @@ int main (int argc, char *argv[])
   int nb_read = 0;
   char READ[SIZE_READ];
 
+  int tempsPrecedent = 0, tempsActuel = 0;
+
+//char *tableau_kmer[];
 char valeur_kmer[31];
 
 int i,j,k,l; 
@@ -70,6 +73,13 @@ int i,j,k,l;
    		return tabKmer;
 	}
 
+	/*struct tab_kmer *find_kmer_FB(char* kmer) {
+    		struct tab_kmer *tabKmer;
+
+    		HASH_FIND_STR(FB, kmer, tabKmer );
+   		return tabKmer;
+	}*/
+
 struct tab_kmer *kmer_found;
 int num = 0;
 int cpt_nb_read = 0;
@@ -77,36 +87,39 @@ int cpt_nb_read = 0;
   while (getRead(READ))
     {
       nb_read = nb_read + 1;
-	  cpt_nb_read++;
+      //if (nb_read%100 == 0){
+	cpt_nb_read++;
+	//printf ("%s\n",READ);
 
       for(i=0; i<SIZE_READ; i++){
 	   if((SIZE_READ-i)>=31){
 		for(j=i; j<i+31; j++){
 		   valeur_kmer[j-i] = READ[j];
+		  // tableau_kmer[l][j] = READ[j];
 		}
 
 		kmer_found = find_kmer(valeur_kmer);
 		if(kmer_found->kmer == NULL){
-			printf("kmer non trouvé");
-			printf("\n");
+			//printf("kmer non trouvé");
+			//printf("\n");
 			add_kmer(valeur_kmer,1);
 		}else{
-			printf("kmer trouvé");
-			printf("\n");
+			//printf("kmer trouvé");
+			//printf("\n");
 			kmer_found->occurence++; 
 	
-			printf("compteur kmer %s est %d",kmer_found->kmer, kmer_found->occurence );
-			printf("\n");
+			//printf("compteur kmer %s est %d",kmer_found->kmer, kmer_found->occurence );
+			//printf("\n");
 		}	
 	
 		
-		printf("kmer %d = %s\n",k,valeur_kmer);
-		num = HASH_COUNT(tableau_kmer);
-		printf("there are %u kmer\n", num);
+		//printf("kmer %d = %s\n",k,valeur_kmer);
+		//num = HASH_COUNT(tableau_kmer);
+		//printf("there are %u kmer\n", num);
 
-		l++;	
+		//l++;	
 		k++;
-		printf("kmer %d = %s\n",k,valeur_kmer);
+		//printf("kmer %d = %s\n",k,valeur_kmer);
 		
 				
 		valeur_kmer[0]='\0';
@@ -116,7 +129,9 @@ int cpt_nb_read = 0;
 	k=0;
 
 	//affichage 
+	//printf("\n");
 
+//}//fin if
     }
 
 	/*for(i=0;i<HASH_COUNT(tableau_kmer);i++){
@@ -125,9 +140,14 @@ int cpt_nb_read = 0;
 		}
 	}*/	
 
-    printf ("# reads = %d\n",cpt_nb_read);
+    	printf ("# reads = %d\n",cpt_nb_read);
+	//printf ("# reads = %d\n",nb_read);
 	num = HASH_COUNT(tableau_kmer);
 	printf("there are %u kmer\n", num);
+
+	tempsActuel = SDL_GetTicks();
+
+	printf("temps écoulé : %d\n", tempsActuel-tempsPrecedent);
 
 
   exit (0);
