@@ -18,10 +18,6 @@ int main (int argc, char *argv[])
   int nb_read = 0;
   char READ[SIZE_READ];
 
-  Uint32 SDL_GetTicks(void);
-
-  int tempsPrecedent = 0, tempsActuel = 0;
-
 //char *tableau_kmer[];
 char valeur_kmer[31];
 
@@ -120,10 +116,7 @@ int cpt_nb_read = 0;
 		//printf("there are %u kmer\n", num);
 
 		//l++;	
-		k++;
-		//printf("kmer %d = %s\n",k,valeur_kmer);
-		
-				
+		k++;		
 		valeur_kmer[0]='\0';
 
 	   }
@@ -146,11 +139,6 @@ int cpt_nb_read = 0;
 	//printf ("# reads = %d\n",nb_read);
 	num = HASH_COUNT(tableau_kmer);
 	printf("there are %u kmer\n", num);
-
-	tempsActuel = SDL_GetTicks();
-
-	printf("temps écoulé : %d\n", tempsActuel-tempsPrecedent);
-
 
   exit (0);
 }
