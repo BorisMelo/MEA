@@ -18,6 +18,8 @@ int main (int argc, char *argv[])
   int nb_read = 0;
   char READ[SIZE_READ];
 
+  Uint32 SDL_GetTicks(void);
+
   int tempsPrecedent = 0, tempsActuel = 0;
 
 //char *tableau_kmer[];
