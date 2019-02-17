@@ -1,6 +1,6 @@
 
 #define SIZE_READ       100
-#define NB_READ   900000
+#define NB_READ   950000
 
 int NB_GET_READ = 0;
 int SIZE_DATA = 0;

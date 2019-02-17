@@ -109,7 +109,7 @@ int cpt_nb_read = 0;
    }
 
    for(s=tableau_kmer; s != NULL; s=(struct tab_kmer*)(s->hh.next)) {
-	if (s->occurence >= 4) {
+	if (s->occurence >= 10) {
        		fprintf(fichier,"valeur kmer: %s \n occurrence: %d\n", s->kmer, s->occurence);
 	}
    }
