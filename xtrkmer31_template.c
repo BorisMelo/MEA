@@ -15,8 +15,15 @@
 
 int main (int argc, char *argv[])
 {   
+ 
+ struct timeval tv1,tv2;
+ long long temps;
+ gettimeofday(&tv1,NULL);
+
  int nb_read = 0;
  char READ[SIZE_READ];
+
+
 
  FILE* fichier = fopen("kmer31.txt", "r+");
 
@@ -108,12 +115,18 @@ int cpt_nb_read = 0;
 
    }
 
+   //Recuperation du symbiote
    for(s=tableau_kmer; s != NULL; s=(struct tab_kmer*)(s->hh.next)) {
 	if (s->occurence >= 10) {
        		fprintf(fichier,"valeur kmer: %s \n occurrence: %d\n", s->kmer, s->occurence);
 	}
    }
    fclose(fichier);
+
+   //Recuperation du temps d'execution
+   gettimeofday(&tv2,NULL);
+   temps=(tv2.tv_sec-tv1.tv_sec);
+   printf("temps=%lld secondes\n",temps);
 
  exit (0);
 }
